@@ -1,0 +1,163 @@
+\documentclass{article}
+
+% setup basic metainfo
+\title{Features Sample}
+\author{Filip Úradník}
+\date{\today}
+
+\input{template}
+\input{color}
+\input{czech}
+
+
+\begin{document}
+\maketitle
+
+\begin{thm}[asdf]
+	asdf $ \prt asdf $$ \prfa asdf $ \[
+		\prfa {asdfasdf}{asdf}
+	\]
+\end{thm}
+
+
+\section{Math Theorems}
+
+\textquote{asdf}
+
+\[
+	\set{hello}
+	\begin{pmatrix}
+		1 & 1 \\
+		2 & 3
+	\end{pmatrix}
+\]
+
+\begin{defi}[Some axioms]
+	\
+	\begin{axioms}
+		\item asdf
+		\item asdf
+	\end{axioms}
+\end{defi}
+
+\begin{lemma}
+	Very interesting
+\end{lemma}
+
+\subsection{Subsection} % {{{
+
+
+
+% }}}
+\begin{defi}
+	Hello there
+\end{defi}
+
+\begin{thm}[Pythagorova]
+	\[c^2 = a^2+b^2 \]
+\end{thm}
+\begin{proof}
+	Na cvičení.
+\end{proof}
+\begin{examp}
+	Skvělý příklad \qed
+\end{examp}
+\begin{examp}
+	Skvělý příklad skvěle očíslovaný
+	\begin{enumerate}
+		\item hello
+		\item there
+		\item how
+		\item are
+		\item you
+	\end{enumerate}
+\end{examp}
+
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+culpa qui officia deserunt mollit anim id est laborum.
+
+
+\section{Code}
+
+\begin{algo}[asdf]\ \\
+	\AlgIn asdfff
+	\begin{algorithmic}[1]
+		\State Do stuff.
+	\end{algorithmic}
+	\AlgOut asdfffdadfa
+\end{algo}
+
+\begin{algo}[Fibonacci analyticky] Použijeme explicitní vzorec k výpočtu
+	Fibbonaciho čísel.
+	\begin{lstlisting}[label={list:first}]
+from math import *
+
+# define function 
+def analytic_fibonacci(n):
+  sqrt_5 = sqrt(5);
+  p = (1 + sqrt_5) / 2;
+  q = 1/p;
+  return int( (p**n + q**n) / sqrt_5 + 0.5 )
+ 
+# define range
+for i in range(1, 31):
+  print analytic_fibonacci(i)
+\end{lstlisting}
+\end{algo}
+Following Listing~\ref{list:first}\ldots{}
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+culpa qui officia deserunt mollit anim id est laborum.
+
+\begin{description}
+	\item[Hello] there
+	\item[How] are you
+\end{description}
+
+\begin{lstlisting}[label={list:second},caption=Sample Bash code.]
+#! /bin/bash
+python stage1.py
+echo "Stage I done!"
+python stage2.py
+echo "Stage II done!"
+python stage3.py
+echo "Stage III done!"
+\end{lstlisting}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+culpa qui officia deserunt mollit anim id est laborum.
+
+\lstlistoflistings
+
+\section{Acronyms}
+ (turned off)
+%Nejzajímavější důkaz má \gls{satnarka}, právě proto z \gls{satnarka} vypadává tolik lidí.
+
+%\printglossary[type=\acronymtype,title={\glostitle}]
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
