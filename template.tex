@@ -118,6 +118,7 @@
 \def\prfat#1#2{\prfa{#1}{\text{#2}}}
 
 \DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\fin}{Fin}
 \DeclareMathOperator{\poly}{poly}
 \DeclareMathOperator{\dlog}{dlog}
 \DeclareMathOperator{\dom}{dom}
@@ -137,9 +138,12 @@
 \DeclareMathOperator{\mini}{mini}
 \DeclareMathOperator{\maxi}{maxi}
 
+\def\funcs#1#2{^{#1}#2} % množina funkcí z #1 do #2
+
 \def\isomorph{\cong}
 \def\dd{\text{ d}}
 \def\compl#1{\overline {#1}}
+\def\tuple#1{\left< #1 \right>}
 
 \def\range#1{\left[ #1 \right]}
 
@@ -152,6 +156,7 @@
 \def\randin{\in_R}
 
 \def\emod#1{\mathbin{\equiv_{#1}}}
+\def\po{\mathbin{\circ}}
 
 \def\disjcup{\mathbin{\dot\cup}}
 \def\bigdisjcup{\mathop{\dot\bigcup}}
@@ -183,16 +188,10 @@
 \def\mohlt{\prec}
 \def\moheq{\approx}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+% implications
+\def\implies{\rightarrow}
+\def\impliedby{\leftarrow}
+\def\Implies{\Longrightarrow}
+\def\Impliedby{\Longleftarrow}
+\def\iff{\leftrightarrow}
+\def\Iff{\Longleftrightarrow}
