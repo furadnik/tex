@@ -36,6 +36,9 @@
 % axioms
 \newenvironment{axioms} {\begin{enumerate}[label=(A\theenumi)]} {\end{enumerate}}
 
+% small matrix with parenths
+\newenvironment{psmallmatrix} {\left(\begin{smallmatrix}} {\end{smallmatrix}\right)}
+
 \algrenewcommand\algorithmicthen{\textbf{:}}
 \algrenewcommand\algorithmicdo{\textbf{:}}
 \algrenewcommand\algorithmicelse{\textbf{else :}}
@@ -92,7 +95,6 @@
 % misc
 \def\restrict#1#2{#1\!\restriction\!#2}
 \def\doubleunderline#1{\underline{\underline{#1}}}
-\def\vec#1{\textbf{\textit{#1}}}
 \def\rand#1{\text{#1}}
 \def\randvec#1{\textbf{#1}}
 
@@ -152,9 +154,19 @@
 
 \def\range#1{\left[ #1 \right]}
 
+% vectors, matrices
+\def\vec#1{\textbf{\textit{#1}}}
+\def\mat#1{\textbf{\textit{#1}}}
+\def\mati#1#2{\mat{#1}_{#2}}
+\def\matii#1#2#3{\mat{#1}_{#2,#3}}
+\def\trans#1{{#1}^{\!\top\!}}
+\def\tmat#1{\trans{\mat{#1}}}
+\def\tvec#1{\trans{\vec{#1}}}
+\def\Rmm#1#2{\R^{#1 \times #2}}
+\def\Rm#1{\R^{#1}}
+
 \def\Rowsp#1{\mathcal{R}\!\left(#1\right)}
 \def\Colsp#1{\mathcal{S}\!\left(#1\right)}
-\def\trans#1{{#1}^{\top}}
 
 \def\norm#1{\left\lVert #1 \right\rVert }
 \def\aabsolute#1{\left\lVert #1 \right\rVert }
