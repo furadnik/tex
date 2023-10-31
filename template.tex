@@ -118,12 +118,6 @@
 \def\set#1{\left\{#1\right\}}
 \def\arr#1{\left[#1\right]}
 
-% probability
-\def\pr#1{\fceb{\Pr}{#1}}
-\def\prfa#1#2{\fceb{\Pr_{#1}}{#2}}
-\def\prt#1{\fceb{\Pr}{\text{#1}}}
-\def\prfat#1#2{\prfa{#1}{\text{#2}}}
-
 \DeclareMathOperator{\Var}{Var}
 \DeclareMathOperator{\fin}{Fin}
 \DeclareMathOperator{\poly}{poly}
@@ -148,22 +142,38 @@
 \def\funcs#1#2{^{#1}#2} % množina funkcí z #1 do #2
 
 \def\isomorph{\cong}
-\def\dd{\text{ d}}
+\def\dd{\,\text{d}}
 \def\compl#1{\overline {#1}}
 \def\tuple#1{\left< #1 \right>}
 
 \def\range#1{\left[ #1 \right]}
 
-% vectors, matrices
-\def\vec#1{\textbf{\textit{#1}}}
-\def\mat#1{\textbf{\textit{#1}}}
-\def\mati#1#2{\mat{#1}_{#2}}
-\def\matii#1#2#3{\mat{#1}_{#2,#3}}
-\def\trans#1{{#1}^{\!\top\!}}
-\def\tmat#1{\trans{\mat{#1}}}
-\def\tvec#1{\trans{\vec{#1}}}
+% vectors
+\def\tr{{\!\top\!}}
+\def\vec{\boldsymbol}
 \def\Rmm#1#2{\R^{#1 \times #2}}
 \def\Rm#1{\R^{#1}}
+\def\ii#1#2{_{#1,#2}} % not sure yet
+
+% probability and random variables
+\def\pr#1{\fceb{\Pr}{#1}}
+\def\prfa#1#2{\fceb{\Pr_{#1}}{#2}}
+\def\prt#1{\fceb{\Pr}{\text{#1}}}
+\def\prfat#1#2{\prfa{#1}{\text{#2}}}
+\def\vrv{\textbf}
+\def\rv{\text}
+
+% deprecated
+\def\rand#1{\text{#1}}
+\def\rvec#1{\textbf{#1}}
+\def\rmat#1{\textbf{#1}}
+\def\veci#1#2{\vec{#1}_{\!#2}}
+\def\mat#1{\textbf{\textit{#1}}}
+\def\mati#1#2{\mat{#1}_{#2}}
+\def\matii#1#2#3{\mat{#1}_{\!#2,#3}}
+\def\trans#1{{#1}^{\tr}}
+\def\tmat#1{\trans{\mat{#1}}}
+\def\tvec#1{\trans{\vec{#1}}}
 
 \def\Rowsp#1{\mathcal{R}\!\left(#1\right)}
 \def\Colsp#1{\mathcal{S}\!\left(#1\right)}
