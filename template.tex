@@ -113,7 +113,9 @@
 \def\fcec#1#2{#1\{#2\}}
 \def\fces#1#2{#1\!\left< #2 \right>}
 
-\def\algorithm#1#2{\fce{\textsc{#1}}{#2}}
+\def\algofont{\textsc}
+\def\algorithm#1#2{\fce{\algofont{#1}}{#2}}
+\newenvironment{algor}[3]{\begin{minipage}{\textwidth}\begin{algo}[#1]\ \\ \AlgIn #2\\\AlgOut #3 \begin{algorithmic}[1]}{\end{algorithmic}\end{algo}\end{minipage}}
 
 \def\set#1{\left\{#1\right\}}
 \def\arr#1{\left[#1\right]}
@@ -136,8 +138,9 @@
 \DeclareMathOperator{\rank}{rank}
 \DeclareMathOperator{\trace}{trace}
 \DeclareMathOperator{\rref}{RREF}
-\DeclareMathOperator{\mini}{mini}
-\DeclareMathOperator{\maxi}{maxi}
+\DeclareMathOperator*{\mini}{mini}
+\DeclareMathOperator*{\maxi}{maxi}
+\DeclareMathOperator*{\avg}{avg}
 
 \def\funcs#1#2{^{#1}#2} % množina funkcí z #1 do #2
 
@@ -153,7 +156,10 @@
 \def\vec{\boldsymbol}
 \def\Rmm#1#2{\R^{#1 \times #2}}
 \def\Rm#1{\R^{#1}}
-\def\ii#1#2{_{#1,#2}} % not sure yet
+\def\ii#1#2{_{#1,#2}}
+\def\inv#1{{#1}^{\inve}}
+\def\inve{-1}
+\def\I#1{I_{#1}}
 
 % probability and random variables
 \def\pr#1{\fceb{\Pr}{#1}}
@@ -185,6 +191,7 @@
 \def\randin{\in_R}
 
 \def\emod#1{\mathbin{\equiv_{#1}}}
+\DeclareMathOperator{\Mod}{mod}
 \def\po{\mathbin{\circ}}
 
 \def\disjcup{\mathbin{\dot\cup}}
@@ -205,7 +212,7 @@
 \def\K{\mathbb{K}}
 \def\P{\mathbb{P}}
 \def\V{\mathbb{V}}
-\def\E{\mathbb{E}}
+\DeclareMathOperator*{\E}{\mathbb{E}}
 \def\F{\mathbb{F}}
 \def\ff{\mathcal{F}}
 \def\T{\mathbb{T}}
@@ -228,3 +235,11 @@
 \def\Impliedby{\Longleftarrow}
 \def\iff{\leftrightarrow}
 \def\Iff{\Longleftrightarrow}
+
+% complexity classes
+\def\problem{\textsc}
+\def\problemClass{\mathsf}
+\def\np{\problemClass{NP}}
+\def\p{\problemClass{P}}
+\def\conp{\problemClass{coNP}}
+\def\fnp{\problemClass{FNP}}
