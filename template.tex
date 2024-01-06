@@ -2,7 +2,7 @@
 \usepackage{csquotes}
 \usepackage{graphicx, xcolor}
 %\usepackage[defaultmono]{droidmono}
-\usepackage{amsmath,amssymb,amsthm,textcomp, enumitem}
+\usepackage{amsmath,amssymb,amsthm,textcomp,enumitem,thm-restate}
 \usepackage{listings}
 \usepackage{parskip}
 \usepackage{stmaryrd} % lightning symbol n stuff
@@ -16,6 +16,7 @@
 
 % hyperlinks
 \usepackage[pdfusetitle]{hyperref}
+\usepackage{cleveref}
 \hypersetup{
 	colorlinks=false
 }
@@ -35,6 +36,7 @@
 
 % axioms
 \newenvironment{axioms} {\begin{enumerate}[label=(A\theenumi)]} {\end{enumerate}}
+\newenvironment{invariants} {\begin{enumerate}[label=(I\theenumi)]} {\end{enumerate}}
 
 % small matrix with parenths
 \newenvironment{psmallmatrix} {\left(\begin{smallmatrix}} {\end{smallmatrix}\right)}
@@ -43,6 +45,7 @@
 \algrenewcommand\algorithmicdo{\textbf{:}}
 \algrenewcommand\algorithmicelse{\textbf{else :}}
 \algdef{SN}[SUBALG]{Indent}{EndIndent}{}{}%
+\algdef{SN}[SUBALG]{Procedure}{EndProcedure}[2]{\algofont{#1}({#2}):}{}%
 
 % acronyms
 %\usepackage[automake]{glossaries-extra}
