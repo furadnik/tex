@@ -35,8 +35,10 @@
 \renewcommand\labelenumi{(\theenumi)}
 
 % axioms
-\newenvironment{axioms} {\begin{enumerate}[label=(A\theenumi)]} {\end{enumerate}}
-\newenvironment{invariants} {\begin{enumerate}[label=(I\theenumi)]} {\end{enumerate}}
+\newlist{axioms}{enumerate}{1}
+\setlist[axioms]{label=(A\arabic*),ref=(A\arabic*)}
+\newlist{invariants}{enumerate}{1}
+\setlist[invariants]{label=(I\arabic*),ref=(I\arabic*)}
 
 % small matrix with parenths
 \newenvironment{psmallmatrix} {\left(\begin{smallmatrix}} {\end{smallmatrix}\right)}
@@ -117,6 +119,7 @@
 \def\fces#1#2{#1\!\left< #2 \right>}
 
 \def\algofont{\textsc}
+\def\algref#1{\algofont{\nameref{#1}}}
 \def\algorithm#1#2{\fce{\algofont{#1}}{#2}}
 \newenvironment{algor}[3]{\begin{minipage}{\textwidth}\begin{algo}[#1]\ \\ \AlgIn #2\\\AlgOut #3 \begin{algorithmic}[1]}{\end{algorithmic}\end{algo}\end{minipage}}
 
