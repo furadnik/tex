@@ -105,7 +105,7 @@
 \def\randvec#1{\textbf{#1}}
 
 \def\suchthat{\;\vert\;}
-\def\supposing{;}
+\def\given{;}
 
 \def\pot#1{\fce{\mathcal{P}}{#1}}
 \def\potfin#1{\left[ #1 \right]^{<\omega}}
@@ -137,16 +137,11 @@
 \DeclareMathOperator*{\argmin}{arg\,min}
 \DeclareMathOperator*{\argmax}{arg\,max}
 \DeclareMathOperator{\id}{id}
-\DeclareMathOperator{\Csq}{Csq}
-\DeclareMathOperator{\Tree}{Tree}
 \DeclareMathOperator{\sgn}{sgn}
-\DeclareMathOperator{\sign}{sign}
 \DeclareMathOperator{\adj}{adj}
-\DeclareMathOperator{\out}{out}
 \DeclareMathOperator{\Ker}{Ker}
 \DeclareMathOperator{\rank}{rank}
 \DeclareMathOperator{\trace}{trace}
-\DeclareMathOperator{\rref}{RREF}
 \DeclareMathOperator*{\mini}{mini}
 \DeclareMathOperator*{\maxi}{maxi}
 \DeclareMathOperator*{\avg}{avg}
@@ -178,18 +173,18 @@
 \def\prfat#1#2{\prfa{#1}{\text{#2}}}
 \def\vrv{\textbf}
 \def\rv{\text}
+\DeclareMathOperator*{\E}{\mathbb{E}}
 
-% deprecated
-\def\rand#1{\text{#1}}
-\def\rvec#1{\textbf{#1}}
-\def\rmat#1{\textbf{#1}}
-\def\veci#1#2{\vec{#1}_{\!#2}}
-\def\mat#1{\textbf{\textit{#1}}}
-\def\mati#1#2{\mat{#1}_{#2}}
-\def\matii#1#2#3{\mat{#1}_{\!#2,#3}}
-\def\trans#1{#1^{\tr}}
-\def\tmat#1{\trans{\mat{#1}}}
-\def\tvec#1{\trans{\vec{#1}}}
+% distributions
+\def{\Normd}{\mathcal{N}}
+\def{\normd}{\fce{\Normd}}
+\def{\normdf}#1#2#3{\normd{#3 \given #1, #2}}
+\DeclareMathOperator{\Berd}{Ber}
+\def{\berd}{\fce{\Berd}}
+\def{\berdf}#1#2{\berd{#2 \given #1}}
+\DeclareMathOperator{\Poisd}{Pois}
+\def{\poisd}{\fce{\Poisd}}
+\def{\poisdf}#1#2{\poisd{#2 \given #1}}
 
 \def\Rowsp#1{\mathcal{R}\!\left(#1\right)}
 \def\Colsp#1{\mathcal{S}\!\left(#1\right)}
@@ -221,7 +216,6 @@
 \def\K{\mathbb{K}}
 \def\P{\mathbb{P}}
 \def\V{\mathbb{V}}
-\DeclareMathOperator*{\E}{\mathbb{E}}
 \def\F{\mathbb{F}}
 \def\ff{\mathcal{F}}
 \def\T{\mathbb{T}}
