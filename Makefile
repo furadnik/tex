@@ -9,6 +9,15 @@ doc: $(PDFS)
 $(PDFS): %.pdf: $(dir %)/*.tex
 	cd $(dir $<) && pdflatex main.tex || echo "error"
 
+beamer.tex:
+	if hue; then sed -i \
+			-e "s/mDarkBrown.*/mDarkBrown\}\{RGB\}{$$(hue .18 .81 --format '{r}, {g}, {b}')}/" \
+			-e "s/mDarkTeal.*/mDarkTeal\}\{RGB\}{$$(hue .18 .81 --format '{r}, {g}, {b}')}/" \
+			-e "s/mLightBrown.*/mLightBrown\}\{RGB\}{$$(hue .9 --format '{r}, {g}, {b}')}/" \
+			-e "s/mLightGreen.*/mLightGreen\}\{RGB\}{$$(hue .9 --format '{r}, {g}, {b}')}/" \
+		beamer.tex; fi
+
+
 purge:
 	rm $(MAINS:.tex=.fls) || echo "fine"
 	rm $(MAINS:.tex=.ist) || echo "fine"
