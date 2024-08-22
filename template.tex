@@ -16,7 +16,6 @@
 \usepackage[T1]{fontenc}
 
 % hyperlinks
-\usepackage[pdfusetitle]{hyperref}
 \usepackage[capitalize]{cleveref}
 \hypersetup{
 	colorlinks=false
@@ -104,7 +103,7 @@
 \def\rand#1{\text{#1}}
 \def\randvec#1{\textbf{#1}}
 
-\def\suchthat{\;\vert\;}
+\def\suchthat{;\,}
 \def\given{;}
 
 \def\pot#1{\fce{\mathcal{P}}{#1}}
@@ -127,6 +126,7 @@
 \def\set#1{\left\{#1\right\}}
 \def\arr#1{\left[#1\right]}
 
+\DeclareMathOperator{\conv}{conv}
 \DeclareMathOperator{\cov}{cov}
 \DeclareMathOperator{\var}{var}
 \DeclareMathOperator{\fin}{Fin}
@@ -157,6 +157,7 @@
 
 % vectors
 \def\tr{{\!\top\!}}
+\def\trans#1{{#1}^{\tr}}
 \def\vec{\boldsymbol}
 \def\Rmm#1#2{\R^{#1 \times #2}}
 \def\Rm#1{\R^{#1}}
@@ -241,7 +242,7 @@
 
 % complexity classes
 \def\problem{\textsc}
-\def\problemClass{\mathsf}
+\def\problemClass{\textsf}
 \def\np{\problemClass{NP}}
 \def\p{\problemClass{P}}
 \def\conp{\problemClass{coNP}}
