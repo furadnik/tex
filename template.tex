@@ -3,7 +3,7 @@
 \usepackage{graphicx, xcolor}
 \usepackage{mfirstuc}
 %\usepackage[defaultmono]{droidmono}
-\usepackage{amsmath,amssymb,amsthm,textcomp,enumitem,thm-restate}
+\usepackage{amsmath,amssymb,amsthm,textcomp,thm-restate}
 \usepackage{listings}
 \usepackage{parskip}
 \usepackage{stmaryrd} % lightning symbol n stuff
@@ -16,6 +16,7 @@
 \usepackage[T1]{fontenc}
 
 % hyperlinks
+\usepackage[pdfusetitle]{hyperref}
 \usepackage[capitalize]{cleveref}
 \hypersetup{
 	colorlinks=false
@@ -29,10 +30,10 @@
 		\else\thesection.\fi\else\thesubsection.\fi\arabic{equation}%
 }
 
+\usepackage{enumitem}
 \setlist[description]{labelindent=\parindent,font=\normalfont\itshape}
 
-% nicer enumerated lists
-\renewcommand\labelenumi{(\theenumi)}
+\setlist[enumerate]{label=(\arabic*),ref=(\arabic*)}
 
 % axioms
 \newlist{axioms}{enumerate}{1}
