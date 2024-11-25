@@ -19,20 +19,23 @@
 	colorlinks=false
 }
 
-\numberwithin{equation}{section}
-\numberwithin{equation}{subsection}
-\renewcommand*{\theequation}{%
+% theorem counter
+\newcounter{thms}
+\numberwithin{equation}{thms}
+\numberwithin{thms}{subsection}
+\renewcommand*{\thethms}{%
 	\ifnum\value{subsection}=0 %
 		\ifnum\value{section}=0 %
-		\else\thesection.\fi\else\thesubsection.\fi\arabic{equation}%
+		\else\thesection.\fi\else\thesubsection.\fi\arabic{thms}%
 }
 
 \usepackage{enumitem}
 \setlist[description]{labelindent=\parindent,font=\normalfont\itshape}
 
+% label enumerate via (N) instead of N.
 \setlist[enumerate]{label=(\arabic*),ref=(\arabic*)}
 
-% axioms
+% axioms & invariants
 \newlist{axioms}{enumerate}{1}
 \setlist[axioms]{label=(A\arabic*),ref=(A\arabic*)}
 \newlist{invariants}{enumerate}{1}
@@ -41,9 +44,7 @@
 % small matrix with parenths
 \newenvironment{psmallmatrix} {\left(\begin{smallmatrix}} {\end{smallmatrix}\right)}
 
-\algrenewcommand\algorithmicthen{\textbf{:}}
-\algrenewcommand\algorithmicdo{\textbf{:}}
-\algrenewcommand\algorithmicelse{\textbf{else :}}
+% algorithmic macros
 \algdef{SN}[SUBALG]{Indent}{EndIndent}{}{}%
 \algdef{SN}[SUBALG]{Procedure}{EndProcedure}[2]{\algofont{#1}({#2}):}{}%
 
@@ -58,16 +59,16 @@
 \geometry{left=25mm,right=25mm,%
 	bindingoffset=0mm, top=20mm,bottom=20mm}
 
+% custom theorem style
 \def\theorempre{1.7ex plus 1.2ex minus 0.6ex}
 \def\theorempost{1.5ex plus 1.2ex minus 0.6ex}
-
-% custom theorems
 \newtheoremstyle{Sdefi}{\theorempre}{\theorempost}{\normalfont}{0pt}
-{\scshape}{: }{0pt}{{\thmname{#1 }}{\thmnumber{#2}}{\thmnote{ (#3)}}}
+{\scshape}{. }{0pt}{{\thmname{#1 }}{\thmnumber{#2}}{\thmnote{ (#3)}}}
 \newtheoremstyle{Sthm}{\theorempre}{\theorempost}{\normalfont}{0pt}
-{\scshape}{: }{0pt}{{\thmname{#1 }}{\thmnumber{#2}}{\thmnote{ (#3)}}}
+{\scshape}{. }{0pt}{{\thmname{#1 }}{\thmnumber{#2}}{\thmnote{ (#3)}}}
 \newtheoremstyle{Sex}{\theorempre}{\theorempost}{\normalfont}{0pt}
-{\scshape}{: }{0pt}{{\thmname{#1 }}{\thmnumber{#2}}{\thmnote{ (#3)}}}
+{\scshape}{. }{0pt}{{\thmname{#1 }}{\thmnumber{#2}}{\thmnote{ (#3)}}}
+
 
 \renewcommand{\qedsymbol}{$\blacksquare$}
 \def\qed{{\parfillskip=0pt\allowbreak\hfill\nobreak $\blacksquare$\par}}
@@ -175,6 +176,7 @@
 \DeclareMathOperator*{\E}{\mathbb{E}}
 
 % distributions
+\def\dist#1{\Delta^{#1}} % set of distributions of set #1
 \def\Normd{\mathcal{N}}
 \def\normd{\fce{\Normd}}
 \def\normdf#1#2#3{\normd{#3 \given #1, #2}}
