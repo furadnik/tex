@@ -3,6 +3,9 @@ TEX_FILES = $(shell find . -type f -name '*.tex')
 
 $(MAIN).pdf: $(MAIN).tex $(TEX_FILES)
 	lualatex $(MAIN).tex
+	bibtex $(MAIN) || echo "no references"
+	lualatex $(MAIN).tex
+	lualatex $(MAIN).tex
 
 beamer.tex:
 	if hue; then sed -i \
@@ -25,4 +28,4 @@ purge:
 clean: purge
 	rm $(MAIN).pdf || echo "fine"
 
-.PHONY: all purge clean
+.PHONY: all purge clean beamer.tex
