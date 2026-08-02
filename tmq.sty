@@ -16,7 +16,6 @@
 \usepackage{geometry}
 
 % hyperlinks
-\usepackage[pdfusetitle]{hyperref}
 \usepackage{zref-clever}
 \hypersetup{colorlinks=false}
 \zcsetup{sort,cap,nameinlink=false}
@@ -42,7 +41,7 @@
 
 % language support
 \RequirePackage{babel}
-\RequirePackage{csquotes}
+\RequirePackage[autostyle=true]{csquotes}
 \newcommand{\czech}{%
 	\selectlanguage{czech}%
 	\zcsetup{lang=czech}%
@@ -89,14 +88,14 @@
 	\renewcommand{\tmqproof}{Proof}%
 	\renewcommand{\glostitle}{Glossary}%
 }
-\DeclareOption{czech}{\czech}
-\DeclareOption{english}{\english}
+\DeclareOption{czech}{\AtBeginDocument{\czech}}
+\DeclareOption{english}{\AtBeginDocument{\english}}
 
 
 % theorem counter
 \newcounter{thms}
-\numberwithin{equation}{thms}
 \numberwithin{thms}{subsection}
+\numberwithin{equation}{thms}
 \DeclareOption{incrementalthms}{%
 	\renewcommand*{\thethms}{%
 		\ifnum\value{subsection}=0 %
@@ -140,6 +139,13 @@
 \DeclareOption{nothmstyle}{%
 \let\tmqnotheoremstyle\relax
 }
+\DeclareOption{nothms}{%
+\let\tmqnotheorems\relax
+}
+\DeclareOption{beamer}{%
+\let\tmqbeamer\relax
+\let\tmqnogeometry\relax
+}
 \DeclareOption{color}{%
 \let\tmqcolor\relax
 }
@@ -168,6 +174,7 @@
 \fi
 
 
+\ifx\tmqnotheorems\undefined
 % theorem environments
 \ifx\tmqnotheoremstyle\undefined\theoremstyle{Sdefi}\else\theoremstyle{definition}\fi
 \newtheorem{defi}[thms]{\protect\tmqdefi}
@@ -175,17 +182,19 @@
 \ifx\tmqnotheoremstyle\undefined\theoremstyle{Sthm}\else\theoremstyle{theorem}\fi
 \newtheorem{thm}[thms]{\protect\tmqthm}
 \newtheorem{lemma}[thms]{\protect\tmqlemma}
-\newtheorem{algo}[thms]{\protect\tmqalgo}
 \newtheorem{obs}[thms]{\protect\tmqobs}
 \newtheorem{prop}[thms]{\protect\tmqprop}
 \newtheorem{invar}[thms]{\protect\tmqinvar}
 \newtheorem{cor}[thms]{\protect\tmqcor}
+\ifx\tmqnotheoremstyle\undefined\theoremstyle{Sthm}\else\theoremstyle{definition}\fi
+\newtheorem{algo}[thms]{\protect\tmqalgo}
 \ifx\tmqnotheoremstyle\undefined\theoremstyle{Sex}\else\theoremstyle{remark}\fi
 \newtheorem{examp}[thms]{\protect\tmqexamp}
 \newtheorem{exercise}[thms]{\protect\tmqexercise}
 \newtheorem{fact}[thms]{\protect\tmqfact}
+\ifx\tmqbeamer\undefined % beamer sets its own note
 \newtheorem{note}[thms]{\protect\tmqnote}
-
+\fi
 
 % reference types
 \zcLanguageSetup{english}{
@@ -215,6 +224,7 @@
 			Name-sg=Invariant,
 			Name-pl=Invarianty,
 }
+\fi
 
 
 % misc macros
@@ -289,7 +299,7 @@
 \def\zero{\vec{o}}
 
 % probability and random variables
-\def\pr#1{\fceb{\Pr}{#1}}
+\newcommand\pr[1][]{\prfa{#1}}
 \def\prfa#1#2{\fceb{\Pr_{#1}}{#2}}
 \def\prt#1{\fceb{\Pr}{\text{#1}}}
 \def\prfat#1#2{\prfa{#1}{\text{#2}}}
@@ -334,15 +344,15 @@
 
 \def\R{\mathds{R}}
 \def\Q{\mathds{Q}}
-\def\N{\mathbb{N}}
+\def\N{\mathds{N}}
 \def\C{\mathds{C}}
 \def\Z{\mathds{Z}}
-\def\K{\mathbb{K}}
-\def\P{\mathbb{P}}
-\def\V{\mathbb{V}}
+\def\K{\mathds{K}}
+\def\P{\mathds{P}}
+\def\V{\mathds{V}}
 \def\F{\mathds{F}}
 \def\ff{\mathcal{F}}
-\def\T{\mathbb{T}}
+\def\T{\mathds{T}}
 \def\O{\mathcal{O}}
 \def\M{\mathcal{M}}
 \def\integ#1#2#3#4{\int_{#1}^{#2} #4 \text{d}#3}
@@ -370,3 +380,4 @@
 \def\p{\problemClass{P}}
 \def\conp{\problemClass{coNP}}
 \def\fnp{\problemClass{FNP}}
+
