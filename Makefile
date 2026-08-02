@@ -2,10 +2,10 @@ MAIN = main
 TEX_FILES = $(shell find . -type f -name '*.tex')
 
 $(MAIN).pdf: $(MAIN).tex $(TEX_FILES)
-	lualatex $(MAIN).tex
+	lualatex -synctex 1 $(MAIN).tex
 	bibtex $(MAIN) || echo "no references"
-	lualatex $(MAIN).tex
-	lualatex $(MAIN).tex
+	lualatex -synctex 1 $(MAIN).tex
+	lualatex -synctex 1 $(MAIN).tex
 
 beamer.tex:
 	if hue; then sed -i \
