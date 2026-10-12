@@ -190,72 +190,41 @@
 
 
 \ifx\tmqnotheorems\undefined
+
+\newcommand\tmqnewtheorem[2]{
+	\newtheorem{#1}[thms]{#2}
+	\AddToHook{env/#1/begin}{\zcsetup{countertype={thms=#1}}}
+}
+
 % theorem environments
 \ifx\tmqnotheoremstyle\undefined\theoremstyle{Sdefi}\else\theoremstyle{definition}\fi
 
-\newtheorem{defi}[thms]{\protect\tmqdefi}
-\AddToHook{env/defi/begin}{%
-\zcsetup{countertype={thms=defi}}}
-
-\newtheorem{notation}[thms]{\protect\tmqnotation}
-\AddToHook{env/notation/begin}{%
-\zcsetup{countertype={thms=notation}}}
+\tmqnewtheorem{defi}{\protect\tmqdefi}
+\tmqnewtheorem{notation}{\protect\tmqnotation}
 
 \ifx\tmqnotheoremstyle\undefined\theoremstyle{Sthm}\else\theoremstyle{theorem}\fi
 
-\newtheorem{thm}[thms]{\protect\tmqthm}
-\AddToHook{env/thm/begin}{%
-\zcsetup{countertype={thms=thm}}}
-
-\newtheorem{lemma}[thms]{\protect\tmqlemma}
-\AddToHook{env/lemma/begin}{%
-\zcsetup{countertype={thms=lemma}}}
-
-\newtheorem{obs}[thms]{\protect\tmqobs}
-\AddToHook{env/obs/begin}{%
-\zcsetup{countertype={thms=obs}}}
-
-\newtheorem{prop}[thms]{\protect\tmqprop}
-\AddToHook{env/prop/begin}{%
-\zcsetup{countertype={thms=prop}}}
-
-\newtheorem{invar}[thms]{\protect\tmqinvar}
-\AddToHook{env/invar/begin}{%
-\zcsetup{countertype={thms=invar}}}
-
-\newtheorem{cor}[thms]{\protect\tmqcor}
-\AddToHook{env/cor/begin}{%
-\zcsetup{countertype={thms=cor}}}
+\tmqnewtheorem{thm}{\protect\tmqthm}
+\tmqnewtheorem{lemma}{\protect\tmqlemma}
+\tmqnewtheorem{obs}{\protect\tmqobs}
+\tmqnewtheorem{prop}{\protect\tmqprop}
+\tmqnewtheorem{invar}{\protect\tmqinvar}
+\tmqnewtheorem{cor}{\protect\tmqcor}
 
 \ifx\tmqnotheoremstyle\undefined\theoremstyle{Sthm}\else\theoremstyle{definition}\fi
 
-\newtheorem{algo}[thms]{\protect\tmqalgo}
-\AddToHook{env/algo/begin}{%
-\zcsetup{countertype={thms=algo}}}
+\newtheorem{algo}{\protect\tmqalgo}
 
 \ifx\tmqnotheoremstyle\undefined\theoremstyle{Sex}\else\theoremstyle{remark}\fi
 
-\newtheorem{examp}[thms]{\protect\tmqexamp}
-\AddToHook{env/examp/begin}{%
-\zcsetup{countertype={thms=examp}}}
-
-\newtheorem{exercise}[thms]{\protect\tmqexercise}
-\AddToHook{env/exercise/begin}{%
-\zcsetup{countertype={thms=exercise}}}
-
-\newtheorem{fact}[thms]{\protect\tmqfact}
-\AddToHook{env/fact/begin}{%
-\zcsetup{countertype={thms=fact}}}
-
-\newtheorem{conjecture}[thms]{\protect\tmqconjecture}
-\AddToHook{env/conjecture/begin}{%
-\zcsetup{countertype={thms=conjecture}}}
+\tmqnewtheorem{examp}{\protect\tmqexamp}
+\tmqnewtheorem{exercise}{\protect\tmqexercise}
+\tmqnewtheorem{fact}{\protect\tmqfact}
+\tmqnewtheorem{conjecture}{\protect\tmqconjecture}
 
 \ifx\tmqbeamer\undefined % beamer sets its own note
 
-\newtheorem{note}[thms]{\protect\tmqnote}
-\AddToHook{env/note/begin}{%
-\zcsetup{countertype={thms=note}}}
+\tmqnewtheorem{note}{\protect\tmqnote}
 
 \fi
 
@@ -266,11 +235,6 @@
 		name-pl=conditions,
 		Name-sg=Condition,
 		Name-pl=Conditions,
-	type=lemma,
-		name-sg=lemma,
-		name-pl=lemmas,
-		Name-sg=Lemma,
-		Name-pl=Lemmas,
 	type=axiom,
 		name-sg=axiom,
 		name-pl=axioms,
