@@ -4,7 +4,7 @@
 \RequirePackage{graphicx}
 \RequirePackage[dvipsnames]{xcolor}
 \RequirePackage{mfirstuc}
-\RequirePackage{amsmath,amssymb,amsthm,textcomp,thm-restate}
+\RequirePackage{amssymb,amsthm}
 \RequirePackage{listings}
 \RequirePackage{parskip}
 \RequirePackage{dsfont} % nicer R,Q,...
@@ -28,6 +28,7 @@
 \newcommand{\tmqdefi}{Definition}%
 \newcommand{\tmqnotation}{Notation}%
 \newcommand{\tmqthm}{Theorem}%
+\newcommand{\tmqconjecture}{Conjecture}%
 \newcommand{\tmqlemma}{Lemma}%
 \newcommand{\tmqalgo}{Algorithm}%
 \newcommand{\tmqobs}{Observation}%
@@ -55,6 +56,7 @@
 	\renewcommand{\tmqdefi}{Definice}%
 	\renewcommand{\tmqnotation}{Značení}%
 	\renewcommand{\tmqthm}{Věta}%
+	\renewcommand{\tmqconjecture}{Hypotéza}%
 	\renewcommand{\tmqlemma}{Lemma}%
 	\renewcommand{\tmqalgo}{Algoritmus}%
 	\renewcommand{\tmqobs}{Pozorování}%
@@ -79,6 +81,7 @@
 	\renewcommand{\tmqdefi}{Definition}%
 	\renewcommand{\tmqnotation}{Notation}%
 	\renewcommand{\tmqthm}{Theorem}%
+	\renewcommand{\tmqconjecture}{Conjecture}%
 	\renewcommand{\tmqlemma}{Lemma}%
 	\renewcommand{\tmqalgo}{Algorithm}%
 	\renewcommand{\tmqobs}{Observation}%
@@ -189,27 +192,85 @@
 \ifx\tmqnotheorems\undefined
 % theorem environments
 \ifx\tmqnotheoremstyle\undefined\theoremstyle{Sdefi}\else\theoremstyle{definition}\fi
+
 \newtheorem{defi}[thms]{\protect\tmqdefi}
+\AddToHook{env/defi/begin}{%
+\zcsetup{countertype={thms=defi}}}
+
 \newtheorem{notation}[thms]{\protect\tmqnotation}
+\AddToHook{env/notation/begin}{%
+\zcsetup{countertype={thms=notation}}}
+
 \ifx\tmqnotheoremstyle\undefined\theoremstyle{Sthm}\else\theoremstyle{theorem}\fi
+
 \newtheorem{thm}[thms]{\protect\tmqthm}
+\AddToHook{env/thm/begin}{%
+\zcsetup{countertype={thms=thm}}}
+
 \newtheorem{lemma}[thms]{\protect\tmqlemma}
+\AddToHook{env/lemma/begin}{%
+\zcsetup{countertype={thms=lemma}}}
+
 \newtheorem{obs}[thms]{\protect\tmqobs}
+\AddToHook{env/obs/begin}{%
+\zcsetup{countertype={thms=obs}}}
+
 \newtheorem{prop}[thms]{\protect\tmqprop}
+\AddToHook{env/prop/begin}{%
+\zcsetup{countertype={thms=prop}}}
+
 \newtheorem{invar}[thms]{\protect\tmqinvar}
+\AddToHook{env/invar/begin}{%
+\zcsetup{countertype={thms=invar}}}
+
 \newtheorem{cor}[thms]{\protect\tmqcor}
+\AddToHook{env/cor/begin}{%
+\zcsetup{countertype={thms=cor}}}
+
 \ifx\tmqnotheoremstyle\undefined\theoremstyle{Sthm}\else\theoremstyle{definition}\fi
+
 \newtheorem{algo}[thms]{\protect\tmqalgo}
+\AddToHook{env/algo/begin}{%
+\zcsetup{countertype={thms=algo}}}
+
 \ifx\tmqnotheoremstyle\undefined\theoremstyle{Sex}\else\theoremstyle{remark}\fi
+
 \newtheorem{examp}[thms]{\protect\tmqexamp}
+\AddToHook{env/examp/begin}{%
+\zcsetup{countertype={thms=examp}}}
+
 \newtheorem{exercise}[thms]{\protect\tmqexercise}
+\AddToHook{env/exercise/begin}{%
+\zcsetup{countertype={thms=exercise}}}
+
 \newtheorem{fact}[thms]{\protect\tmqfact}
+\AddToHook{env/fact/begin}{%
+\zcsetup{countertype={thms=fact}}}
+
+\newtheorem{conjecture}[thms]{\protect\tmqconjecture}
+\AddToHook{env/conjecture/begin}{%
+\zcsetup{countertype={thms=conjecture}}}
+
 \ifx\tmqbeamer\undefined % beamer sets its own note
+
 \newtheorem{note}[thms]{\protect\tmqnote}
+\AddToHook{env/note/begin}{%
+\zcsetup{countertype={thms=note}}}
+
 \fi
 
 % reference types
 \zcLanguageSetup{english}{
+	type=condition,
+		name-sg=condition,
+		name-pl=conditions,
+		Name-sg=Condition,
+		Name-pl=Conditions,
+	type=lemma,
+		name-sg=lemma,
+		name-pl=lemmas,
+		Name-sg=Lemma,
+		Name-pl=Lemmas,
 	type=axiom,
 		name-sg=axiom,
 		name-pl=axioms,
@@ -220,6 +281,41 @@
 		name-pl=invariants,
 		Name-sg=Invariant,
 		Name-pl=Invariants,
+	type = defi,
+		name-sg=definition,
+		name-pl=definitions,
+		Name-sg=Definition,
+		Name-pl=Definitions,
+	type = thm,
+		name-sg=theorem,
+		name-pl=theorems,
+		Name-sg=Theorem,
+		Name-pl=Theorems,
+	type = algo,
+		name-sg=algorithm,
+		name-pl=algorithms,
+		Name-sg=Algorithm,
+		Name-pl=Algorithms,
+	type = step,
+		name-sg=step,
+		name-pl=steps,
+		Name-sg=Step,
+		Name-pl=Steps,
+	type = fact,
+		name-sg=fact,
+		name-pl=facts,
+		Name-sg=Fact,
+		Name-pl=Facts,
+	type = obs,
+		name-sg=observation,
+		name-pl=observations,
+		Name-sg=Observation,
+		Name-pl=Observations,
+	type = notation,
+		name-sg=notation,
+		name-pl=notations,
+		Name-sg=Notation,
+		Name-pl=Notations,
 }
 \zcDeclareLanguage[variants={1,2,3,4,5,6,7}]{czech}
 \zcLanguageSetup{czech}{
@@ -396,60 +492,6 @@
 
 \newcommand\todo[1]{\textbf{\textcolor{red}{TODO:}}~\textcolor{darkgray}{{\textit{#1}}}}
 
-\zcLanguageSetup{english}{
-	type=condition,
-		name-sg=condition,
-		name-pl=conditions,
-		Name-sg=Condition,
-		Name-pl=Conditions,
-	type=lemma,
-		name-sg=lemma,
-		name-pl=lemmas,
-		Name-sg=Lemma,
-		Name-pl=Lemmas,
-	type=axiom,
-		name-sg=axiom,
-		name-pl=axioms,
-		Name-sg=Axiom,
-		Name-pl=Axioms,
-	type=invar,
-		name-sg=invariant,
-		name-pl=invariants,
-		Name-sg=Invariant,
-		Name-pl=Invariants,
-	type = defi,
-		name-sg=definition,
-		name-pl=definitions,
-		Name-sg=Definition,
-		Name-pl=Definitions,
-	type = thm,
-		name-sg=theorem,
-		name-pl=theorems,
-		Name-sg=Theorem,
-		Name-pl=Theorems,
-	type = algo,
-		name-sg=algorithm,
-		name-pl=algorithms,
-		Name-sg=Algorithm,
-		Name-pl=Algorithms,
-	type = step,
-		name-sg=step,
-		name-pl=steps,
-		Name-sg=Step,
-		Name-pl=Steps,
-	type = fact,
-		name-sg=fact,
-		name-pl=facts,
-		Name-sg=Fact,
-		Name-pl=Facts,
-	type = obs,
-		name-sg=observation,
-		name-pl=observations,
-		Name-sg=Observation,
-		Name-pl=Observations,
-	type = notation,
-		name-sg=notation,
-		name-pl=notations,
-		Name-sg=Notation,
-		Name-pl=Notations,
-}
+\newcommand{\zcrefname}[2][]{\zcref[noref, cap=false, #1]{#2}}
+\def\theoremstartswithlist{\ \vspace{-1em}}
+
