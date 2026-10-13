@@ -25,20 +25,6 @@
 % default commands
 \newcommand\AlgIn{\emph{Input: }}%
 \newcommand\AlgOut{\emph{Output: }}%
-\newcommand{\tmqdefi}{Definition}%
-\newcommand{\tmqnotation}{Notation}%
-\newcommand{\tmqthm}{Theorem}%
-\newcommand{\tmqconjecture}{Conjecture}%
-\newcommand{\tmqlemma}{Lemma}%
-\newcommand{\tmqalgo}{Algorithm}%
-\newcommand{\tmqobs}{Observation}%
-\newcommand{\tmqprop}{Proposition}%
-\newcommand{\tmqinvar}{Invariant}%
-\newcommand{\tmqcor}{Corollary}%
-\newcommand{\tmqexamp}{Example}%
-\newcommand{\tmqexercise}{Exercise}%
-\newcommand{\tmqfact}{Fact}%
-\newcommand{\tmqnote}{Note}%
 \newcommand{\tmqproof}{Proof}%
 \newcommand{\tmqproofidea}{Proof Idea}%
 \newcommand{\glostitle}{Glossary}%
@@ -53,20 +39,6 @@
 	\renewcommand{\lstlistlistingname}{Seznam ukázek kódu}%
 	\renewcommand\AlgIn{\emph{Vstup: }}%
 	\renewcommand\AlgOut{\emph{Výstup: }}%
-	\renewcommand{\tmqdefi}{Definice}%
-	\renewcommand{\tmqnotation}{Značení}%
-	\renewcommand{\tmqthm}{Věta}%
-	\renewcommand{\tmqconjecture}{Hypotéza}%
-	\renewcommand{\tmqlemma}{Lemma}%
-	\renewcommand{\tmqalgo}{Algoritmus}%
-	\renewcommand{\tmqobs}{Pozorování}%
-	\renewcommand{\tmqprop}{Tvrzení}%
-	\renewcommand{\tmqinvar}{Invariant}%
-	\renewcommand{\tmqcor}{Důsledek}%
-	\renewcommand{\tmqexamp}{Příklad}%
-	\renewcommand{\tmqexercise}{Cvičení}%
-	\renewcommand{\tmqfact}{Fakt}%
-	\renewcommand{\tmqnote}{Poznámka}%
 	\renewcommand{\tmqproof}{Důkaz}%
 	\renewcommand{\tmqproofidea}{Idea důkazu}%
 	\renewcommand{\glostitle}{Seznam zkratek}%
@@ -74,29 +46,19 @@
 \newcommand{\english}{%
 	\selectlanguage{english}%
 	\zcsetup{lang=english}%
-	\renewcommand{\lstlistingname}{Ukázka kódu}%
-	\renewcommand{\lstlistlistingname}{Seznam ukázek kódu}%
 	\renewcommand\AlgIn{\emph{Input: }}%
 	\renewcommand\AlgOut{\emph{Output: }}%
-	\renewcommand{\tmqdefi}{Definition}%
-	\renewcommand{\tmqnotation}{Notation}%
-	\renewcommand{\tmqthm}{Theorem}%
-	\renewcommand{\tmqconjecture}{Conjecture}%
-	\renewcommand{\tmqlemma}{Lemma}%
-	\renewcommand{\tmqalgo}{Algorithm}%
-	\renewcommand{\tmqobs}{Observation}%
-	\renewcommand{\tmqprop}{Proposition}%
-	\renewcommand{\tmqinvar}{Invariant}%
-	\renewcommand{\tmqcor}{Corollary}%
-	\renewcommand{\tmqexamp}{Example}%
-	\renewcommand{\tmqexercise}{Exercise}%
-	\renewcommand{\tmqfact}{Fact}%
-	\renewcommand{\tmqnote}{Note}%
 	\renewcommand{\tmqproof}{Proof}%
 	\renewcommand{\glostitle}{Glossary}%
 }
-\DeclareOption{czech}{\AtBeginDocument{\czech}}
-\DeclareOption{english}{\AtBeginDocument{\english}}
+\DeclareOption{czech}{
+	\let\tmqczech\relax
+	\AtBeginDocument{\czech}
+}
+\DeclareOption{english}{
+	\let\tmqenglish\relax
+	\AtBeginDocument{\english}
+}
 
 
 % theorem counter
@@ -191,45 +153,89 @@
 
 \ifx\tmqnotheorems\undefined
 
-\newcommand\tmqnewtheorem[2]{
-	\newtheorem{#1}[thms]{#2}
+% this makes zref-clever work with shared counters
+\newcommand\tmqthmhook[1]{
 	\AddToHook{env/#1/begin}{\zcsetup{countertype={thms=#1}}}
 }
 
 % theorem environments
+% we define them in a convoluted way because otherwise language servers don't like to pick up on their names
+% note that even if the document is in czech, the language server shows english names
 \ifx\tmqnotheoremstyle\undefined\theoremstyle{Sdefi}\else\theoremstyle{definition}\fi
 
-\tmqnewtheorem{defi}{\protect\tmqdefi}
-\tmqnewtheorem{notation}{\protect\tmqnotation}
+\ifx\tmqenglish\relax\newtheorem{defi}[thms]{Definition}\fi
+\ifx\tmqczech\relax\newtheorem{defi}[thms]{Definice}\fi
+\tmqthmhook{defi}
+
+\ifx\tmqenglish\relax\newtheorem{notation}[thms]{Notation}\fi
+\ifx\tmqczech\relax\newtheorem{notation}[thms]{Notace}\fi
+\tmqthmhook{notation}
 
 \ifx\tmqnotheoremstyle\undefined\theoremstyle{Sthm}\else\theoremstyle{theorem}\fi
 
-\tmqnewtheorem{thm}{\protect\tmqthm}
-\tmqnewtheorem{lemma}{\protect\tmqlemma}
-\tmqnewtheorem{obs}{\protect\tmqobs}
-\tmqnewtheorem{prop}{\protect\tmqprop}
-\tmqnewtheorem{invar}{\protect\tmqinvar}
-\tmqnewtheorem{cor}{\protect\tmqcor}
+\ifx\tmqenglish\relax\newtheorem{thm}[thms]{Theorem}\fi
+\ifx\tmqczech\relax\newtheorem{thm}[thms]{Věta}\fi
+\tmqthmhook{thm}
+
+\ifx\tmqenglish\relax\newtheorem{lemma}[thms]{Lemma}\fi
+\ifx\tmqczech\relax\newtheorem{lemma}[thms]{Lemma}\fi
+\tmqthmhook{lemma}
+
+\ifx\tmqenglish\relax\newtheorem{obs}[thms]{Observation}\fi
+\ifx\tmqczech\relax\newtheorem{obs}[thms]{Pozorování}\fi
+\tmqthmhook{obs}
+
+\ifx\tmqenglish\relax\newtheorem{prop}[thms]{Proposition}\fi
+\ifx\tmqczech\relax\newtheorem{prop}[thms]{Tvrzení}\fi
+\tmqthmhook{prop}
+
+\ifx\tmqenglish\relax\newtheorem{invar}[thms]{Invariant}\fi
+\ifx\tmqczech\relax\newtheorem{invar}[thms]{Invariant}\fi
+\tmqthmhook{invar}
+
+\ifx\tmqenglish\relax\newtheorem{cor}[thms]{Corollary}\fi
+\ifx\tmqczech\relax\newtheorem{cor}[thms]{Důsledek}\fi
+\tmqthmhook{cor}
 
 \ifx\tmqnotheoremstyle\undefined\theoremstyle{Sthm}\else\theoremstyle{definition}\fi
 
-\newtheorem{algo}{\protect\tmqalgo}
+\ifx\tmqenglish\relax\newtheorem{algo}[thms]{Algorithm}\fi
+\ifx\tmqczech\relax\newtheorem{algo}[thms]{Algoritmus}\fi
+\tmqthmhook{algo}
 
 \ifx\tmqnotheoremstyle\undefined\theoremstyle{Sex}\else\theoremstyle{remark}\fi
 
-\tmqnewtheorem{examp}{\protect\tmqexamp}
-\tmqnewtheorem{exercise}{\protect\tmqexercise}
-\tmqnewtheorem{fact}{\protect\tmqfact}
-\tmqnewtheorem{conjecture}{\protect\tmqconjecture}
+\ifx\tmqenglish\relax\newtheorem{examp}[thms]{Example}\fi
+\ifx\tmqczech\relax\newtheorem{examp}[thms]{Příklad}\fi
+\tmqthmhook{examp}
+
+\ifx\tmqenglish\relax\newtheorem{exercise}[thms]{Exercise}\fi
+\ifx\tmqczech\relax\newtheorem{exercise}[thms]{Cvičení}\fi
+\tmqthmhook{exercise}
+
+\ifx\tmqenglish\relax\newtheorem{fact}[thms]{Fact}\fi
+\ifx\tmqczech\relax\newtheorem{fact}[thms]{Fakt}\fi
+\tmqthmhook{fact}
+
+\ifx\tmqenglish\relax\newtheorem{conjecture}[thms]{Conjecture}\fi
+\ifx\tmqczech\relax\newtheorem{conjecture}[thms]{Hypotéza}\fi
+\tmqthmhook{conjecture}
 
 \ifx\tmqbeamer\undefined % beamer sets its own note
 
-\tmqnewtheorem{note}{\protect\tmqnote}
+\ifx\tmqenglish\relax\newtheorem{note}[thms]{Note}\fi
+\ifx\tmqczech\relax\newtheorem{note}[thms]{Poznámka}\fi
+\tmqthmhook{note}
 
 \fi
 
 % reference types
 \zcLanguageSetup{english}{
+	type=cor,
+		name-sg=corollary,
+		name-pl=corollaries,
+		Name-sg=Corollary,
+		Name-pl=Corollaries,
 	type=condition,
 		name-sg=condition,
 		name-pl=conditions,
