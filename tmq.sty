@@ -132,6 +132,24 @@
 	\geometry{a5paper, hmargin=12mm, top=12mm, bottom=16mm, footskip=8mm}
 \fi
 
+% title
+\makeatletter
+\renewcommand\maketitle{{
+		\parindent = 0pt
+		\let\and\relax
+		\def\and{\unskip,\ }
+		{\LARGE\bfseries\@title\par}
+		\nointerlineskip\vspace{1.2ex}
+		{\large\@author}
+		\hfill
+		{\sl\@date}
+
+		\vspace{1.6ex}
+		{\color{black!30}\hrule height 0.6pt}
+		\vspace{2.5ex}
+}}
+\makeatother
+
 \ifx\tmqnotheoremstyle\undefined
 	\def\theorempre{1.7ex plus 1.2ex minus 0.6ex}
 	\def\theorempost{1.5ex plus 1.2ex minus 0.6ex}
@@ -434,6 +452,7 @@
 \def\ff{\mathcal{F}}
 \def\T{\mathds{T}}
 \def\O{\mathcal{O}}
+\def\tO{\tilde\O}
 \def\M{\mathcal{M}}
 \def\integ#1#2#3#4{\int_{#1}^{#2} #4 \text{d}#3}
 \def\iinteg#1#2#3#4{\iint_{#1} #4 \text{d}#2\text{d}#3}
