@@ -134,8 +134,17 @@
 
 % title
 \makeatletter
+\newcommand\abovetitle[1]{\gdef\@abovetitle{#1}}
+\let\@abovetitle\@empty
+
 \renewcommand\maketitle{{
 		\parindent = 0pt
+		\let\and\relax
+		\def\and{\textperiodcentered{}\ }
+		\ifx\@abovetitle\@empty\else
+			{\normalsize\scshape\@abovetitle\par}
+			\nointerlineskip\vspace{0.8ex}
+		\fi
 		\let\and\relax
 		\def\and{\unskip,\ }
 		{\LARGE\bfseries\@title\par}
