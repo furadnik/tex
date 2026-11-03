@@ -109,6 +109,10 @@
 	\let\tmqafour\relax
 }
 
+\DeclareOption{notitle}{
+	\let\tmqnotitle\relax
+}
+
 % custom theorem style
 \DeclareOption{nothmstyle}{%
 \let\tmqnotheoremstyle\relax
@@ -142,31 +146,31 @@
 \fi
 
 % title
-\makeatletter
-\newcommand\abovetitle[1]{\gdef\@abovetitle{#1}}
-\let\@abovetitle\@empty
+\ifx\tmqnotitle\undefined
+	\newcommand\abovetitle[1]{\gdef\@abovetitle{#1}}
+	\let\@abovetitle\@empty
 
-\renewcommand\maketitle{{
-		\parindent = 0pt
-		\let\and\relax
-		\def\and{\textperiodcentered{}\ }
-		\ifx\@abovetitle\@empty\else
-			{\normalsize\scshape\@abovetitle\par}
-			\nointerlineskip\vspace{0.8ex}
-		\fi
-		\let\and\relax
-		\def\and{\unskip,\ }
-		{\LARGE\bfseries\@title\par}
-		\nointerlineskip\vspace{1.2ex}
-		{\large\@author}
-		\hfill
-		{\sl\@date}
+	\renewcommand\maketitle{{
+			\parindent = 0pt
+			\let\and\relax
+			\def\and{\textperiodcentered{}\ }
+			\ifx\@abovetitle\@empty\else
+				{\normalsize\scshape\@abovetitle\par}
+				\nointerlineskip\vspace{0.8ex}
+			\fi
+			\let\and\relax
+			\def\and{\unskip,\ }
+			{\LARGE\bfseries\@title\par}
+			\nointerlineskip\vspace{1.2ex}
+			{\large\@author}
+			\hfill
+			{\sl\@date}
 
-		\vspace{1.6ex}
-		{\color{black!30}\hrule height 0.6pt}
-		\vspace{2.5ex}
-}}
-\makeatother
+			\vspace{1.6ex}
+			{\color{black!30}\hrule height 0.6pt}
+			\vspace{2.5ex}
+	}}
+\fi
 
 \ifx\tmqnotheoremstyle\undefined
 	\def\theorempre{1.7ex plus 1.2ex minus 0.6ex}
