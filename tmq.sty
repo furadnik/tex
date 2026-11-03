@@ -181,6 +181,10 @@
 	{\ifx\tmqcolor\relax\color{orange}\fi\scshape}{.}{\newline}{{\thmname{#1 }}{\thmnumber{#2}}{\thmnote{ ({#3})}}}
 	\newtheoremstyle{Sex}{\theorempre}{\theorempost}{\normalfont}{0pt}
 	{\ifx\tmqcolor\relax\color{purple}\fi\scshape}{.}{\newline}{{\thmname{#1 }}{\thmnumber{#2}}{\thmnote{ ({#3})}}}
+\fi
+
+
+\ifx\tmqcolor\relax
 	\hypersetup{
 	  colorlinks=true,     % color the link text instead of drawing boxes
 	  linkcolor=OliveGreen,      % internal links (sections, equations, \ref)
