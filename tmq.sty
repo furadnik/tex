@@ -100,9 +100,13 @@
 \setabbreviationstyle[acronym]{long-short}
 \makeglossaries
 
-% text spread on page % TODO: as option
+% text spread on page
 \DeclareOption{nogeometry}{%
 	\let\tmqnogeometry\relax
+}
+
+\DeclareOption{a4}{
+	\let\tmqafour\relax
 }
 
 % custom theorem style
@@ -129,7 +133,12 @@
  
 % page geometry
 \ifx\tmqnogeometry\undefined
-	\geometry{a5paper, hmargin=12mm, top=12mm, bottom=16mm, footskip=8mm}
+	\geometry{hmargin=12mm, top=12mm, bottom=16mm, footskip=8mm}
+	\ifx\tmqafour\undefined
+		\geometry{a5paper}
+	\else
+		\geometry{a4paper}
+	\fi
 \fi
 
 % title
